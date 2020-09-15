@@ -8,6 +8,10 @@
     "assetBundlePatterns": ["**/*"],
     "android": {
       "useNextNotificationsApi": true
+    },
+    "androidNavigationBar": {
+      "barStyle": "light-content",
+      "backgroundColor": "#393e46"
     }
   }
 }

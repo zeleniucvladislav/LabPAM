@@ -16,7 +16,6 @@ export default function UserLocation() {
     }
     let location = await Location.getCurrentPositionAsync({});
     setLocation(location);
-    console.log(location);
   }
   /*
   let text = "Waiting..";
@@ -85,8 +84,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: "#eeeeee",
-    paddingRight: 10,
-    margin: 10,
+    paddingRight: 5,
   },
   locationContainer: {
     backgroundColor: "#393e46",
@@ -100,5 +98,7 @@ const styles = StyleSheet.create({
   },
   locationText: {
     color: "#eeeeee",
+    paddingRight: 5,
+    margin: 10,
   },
 });

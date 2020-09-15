@@ -30,7 +30,7 @@ export default function EventList(props) {
       <FlatList
         data={props.eventList}
         renderItem={renderItem}
-        keyExtractor={(item) => item.index}
+        keyExtractor={(item, index) => index.toString()}
       />
     </>
   );
@@ -44,7 +44,6 @@ const styles = StyleSheet.create({
     marginTop: 30,
   },
   event: {
-    flex: 1,
     marginTop: 20,
     marginBottom: 20,
     padding: 20,
