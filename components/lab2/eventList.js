@@ -74,7 +74,7 @@ export default function EventList(props) {
             onChangeText={(text) => handleSearch(text)}
           />
           <FlatList
-            data={list}
+            data={list.sort((a, b) => a.date.localeCompare(b.date))}
             renderItem={renderItem}
             keyExtractor={(item, index) => index.toString()}
           />
