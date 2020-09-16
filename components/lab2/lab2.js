@@ -52,6 +52,11 @@ export default function Lab2() {
     StoreMarkedDateList(markedDateList);
     RetrieveData();
   };
+  const updateEvent = (index, date, text) => {
+    eventList[index] = { date, text };
+    StoreEventList(eventList);
+    RetrieveData();
+  };
   StoreEventList = async (object) => {
     try {
       await AsyncStorage.setItem(EVENT_LIST, JSON.stringify(object));
@@ -98,7 +103,11 @@ export default function Lab2() {
         ) : (
           <>
             <Calendar markedDateList={markedDateList} selectDate={selectDate} />
-            <EventList eventList={eventList} deleteEvent={deleteEvent} />
+            <EventList
+              eventList={eventList}
+              deleteEvent={deleteEvent}
+              updateEvent={updateEvent}
+            />
           </>
         )}
       </View>

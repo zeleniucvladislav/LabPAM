@@ -8,6 +8,7 @@ import {
   TextInput,
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons";
 import moment from "moment";
 
 export default function EventForm(props) {
@@ -32,6 +33,7 @@ export default function EventForm(props) {
       />
       <TouchableOpacity style={styles.button} onPress={props.onPress}>
         <Text style={styles.buttonText}>Create Event</Text>
+        <MaterialIcons style={styles.buttonText} name="add" size={20} />
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.button}
@@ -39,9 +41,12 @@ export default function EventForm(props) {
           props.setCalendarExpanded(false);
         }}
       >
-        <Text style={styles.buttonText}>
-          <AntDesign name="back" size={25} />
-        </Text>
+        <Text style={styles.buttonText}>Return</Text>
+        <MaterialIcons
+          style={styles.buttonText}
+          name="settings-backup-restore"
+          size={20}
+        />
       </TouchableOpacity>
       <View style={styles.eventContainer}>
         <FlatList
@@ -56,17 +61,19 @@ export default function EventForm(props) {
 
 const styles = StyleSheet.create({
   form: {
-    marginTop: 30,
-    marginBottom: 30,
+    margin: 30,
   },
   button: {
     backgroundColor: "#00adb5",
     alignItems: "center",
+    flexDirection: "row",
+    justifyContent: "center",
     padding: 10,
     marginTop: 30,
   },
   buttonText: {
     color: "#eeeeee",
+    paddingRight: 5,
   },
   input: {
     borderWidth: 1,
@@ -79,15 +86,13 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     color: "#eeeeee",
   },
-  eventContainer: {
-    alignItems: "center",
-    justifyContent: "center",
-  },
   event: {
     marginTop: 20,
     marginBottom: 20,
     padding: 20,
     backgroundColor: "#00adb5",
+    alignItems: "center",
+    justifyContent: "center",
   },
   eventText: {
     color: "#eeeeee",

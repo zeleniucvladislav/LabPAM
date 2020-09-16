@@ -55,6 +55,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#00adb5",
     padding: 10,
+    color: "#eeeeee",
   },
   label: {
     fontSize: 18,

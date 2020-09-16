@@ -49,7 +49,7 @@ export default function Calendar(props) {
 
 const styles = StyleSheet.create({
   calendar: {
-    height: 350,
-    marginTop: 30,
+    height: 320,
+    marginTop: 20,
   },
 });
