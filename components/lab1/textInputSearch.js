@@ -10,17 +10,13 @@ import { AntDesign } from "@expo/vector-icons";
 
 export default function TextInputSearch() {
   const [searchTerm, setSearchTerm] = useState("");
-  const onPress = () => {
-    const url = `http://google.com/search?q=${searchTerm}`;
-    Linking.canOpenURL(url)
-      .then((supported) => {
-        if (!supported) {
-          console.log("Can't handle url: " + url);
-        } else {
-          return Linking.openURL(url);
-        }
-      })
-      .catch((err) => console.error("An error occurred", err));
+  const SearchTerm = () => {
+    const url = `http://google.com/search?q=${encodeURIComponent(searchTerm)}`;
+    try {
+      Linking.openURL(url);
+    } catch (err) {
+      console.log("Error occured", err);
+    }
   };
   return (
     <>
@@ -31,7 +27,7 @@ export default function TextInputSearch() {
         placeholder="e.g React Native"
         onChangeText={(value) => setSearchTerm(value)}
       />
-      <TouchableOpacity style={styles.button} onPress={onPress}>
+      <TouchableOpacity style={styles.button} onPress={SearchTerm}>
         <Text style={styles.buttonText}>Search Term</Text>
         <AntDesign name="search1" style={styles.buttonText} size={18} />
       </TouchableOpacity>

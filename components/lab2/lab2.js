@@ -26,6 +26,7 @@ export default function Lab2() {
   useEffect(() => {
     RetrieveData();
   }, []);
+
   const selectDate = (day) => {
     setDate(day.dateString);
     setMarkedDate({
@@ -37,7 +38,8 @@ export default function Lab2() {
     });
     setCalendarExpanded(true);
   };
-  const onPress = () => {
+
+  const createEvent = () => {
     var temp = markedDateList;
     setEvent({ date, text });
     StoreEventList(eventList.concat({ date, text }));
@@ -45,6 +47,7 @@ export default function Lab2() {
     RetrieveData();
     setCalendarExpanded(false);
   };
+
   const deleteEvent = (index, date) => {
     eventList.splice(index, 1);
     delete markedDateList[date];
@@ -52,11 +55,13 @@ export default function Lab2() {
     StoreMarkedDateList(markedDateList);
     RetrieveData();
   };
+
   const updateEvent = (index, date, text) => {
     eventList[index] = { date, text };
     StoreEventList(eventList);
     RetrieveData();
   };
+
   StoreEventList = async (object) => {
     try {
       await AsyncStorage.setItem(EVENT_LIST, JSON.stringify(object));
@@ -97,7 +102,7 @@ export default function Lab2() {
             date={date}
             dateEvents={eventList.filter((value) => value.date === date)}
             setText={setText}
-            onPress={onPress}
+            onPress={createEvent}
             setCalendarExpanded={setCalendarExpanded}
           />
         ) : (

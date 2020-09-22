@@ -18,9 +18,11 @@ export default function EventList(props) {
   const [update, setUpdate] = useState(false);
   const [item, setItem] = useState({});
   const [index, setIndex] = useState("");
+
   useEffect(() => {
     setList(props.eventList);
   }, [props.eventList]);
+
   const handleSearch = (text) => {
     const newData = arrayHolder.filter((item) => {
       const itemData = `${item.date.toUpperCase()} ${item.text.toUpperCase()}`;
@@ -29,11 +31,13 @@ export default function EventList(props) {
     });
     setList(newData);
   };
+
   const selectedItem = (index, item) => {
     setItem(item);
     setIndex(index);
     setUpdate(true);
   };
+
   const renderItem = ({ item, index }) => (
     <View key={index} style={styles.event}>
       <Text style={styles.eventText}>

@@ -31,19 +31,16 @@ export default function CameraLab(props) {
       setCapturedPhoto(true);
     }
   }
-
-  if (hasPermission === null) {
-    return <View />;
+  {
+    hasPermission === null && <View />;
   }
-  if (hasPermission === false) {
-    return <Text>No access to camera</Text>;
+  {
+    hasPermission === false && <Text>No access to camera</Text>;
   }
   return (
     <>
       {capturedPhoto ? (
-        <>
-          <DisplayPhoto photo={photo} setCapturedPhoto={setCapturedPhoto} />
-        </>
+        <DisplayPhoto photo={photo} setCapturedPhoto={setCapturedPhoto} />
       ) : (
         <>
           <TouchableOpacity

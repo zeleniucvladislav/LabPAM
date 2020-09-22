@@ -14,31 +14,17 @@ Notifications.setNotificationHandler({
 });
 
 export default function NotificationLab() {
-  //const [expoPushToken, setExpoPushToken] = useState("");
   const [notification, setNotification] = useState(false);
   const notificationListener = useRef();
-  //const responseListener = useRef();
 
   useEffect(() => {
-    /*registerForPushNotificationsAsync().then((token) =>
-      setExpoPushToken(token)
-    );*/
-
     notificationListener.current = Notifications.addNotificationReceivedListener(
       (notification) => {
         setNotification(notification);
       }
     );
-    /*
-    responseListener.current = Notifications.addNotificationResponseReceivedListener(
-      (response) => {
-        console.log(response);
-      }
-    );*/
-
     return () => {
       Notifications.removeNotificationSubscription(notificationListener);
-      //Notifications.removeNotificationSubscription(responseListener);
     };
   }, []);
 
@@ -60,7 +46,7 @@ export default function NotificationLab() {
     </>
   );
 }
-async function sendPushNotification(/*expoPushToken*/) {
+async function sendPushNotification() {
   await Notifications.scheduleNotificationAsync({
     vibrate: false,
     sound: true,
@@ -72,9 +58,8 @@ async function sendPushNotification(/*expoPushToken*/) {
     trigger: { seconds: 10 },
   });
 }
-
+/*
 async function registerForPushNotificationsAsync() {
-  //let token;
   if (Constants.isDevice) {
     const { status: existingStatus } = await Permissions.getAsync(
       Permissions.NOTIFICATIONS
@@ -88,8 +73,6 @@ async function registerForPushNotificationsAsync() {
       alert("Failed to get push token for push notification!");
       return;
     }
-    //token = (await Notifications.getExpoPushTokenAsync()).data;
-    //console.log(token);
   } else {
     alert("Must use physical device for Push Notifications");
   }
@@ -102,9 +85,7 @@ async function registerForPushNotificationsAsync() {
       lightColor: "#FF231F7C",
     });
   }
-
-  //return token;
-}
+}*/
 const styles = StyleSheet.create({
   button: {
     flexDirection: "row",

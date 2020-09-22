@@ -2,28 +2,35 @@ import React, { useState } from "react";
 import { View, TouchableOpacity, Text, StyleSheet } from "react-native";
 import { Entypo } from "@expo/vector-icons";
 import * as Location from "expo-location";
-import { FontAwesome5 } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 export default function UserLocation() {
   const [location, setLocation] = useState(null);
-  //const [errorMsg, setErrorMsg] = useState(null);
-
   async function CheckLocation() {
-    let { status } = await Location.requestPermissionsAsync();
-    if (status !== "granted") {
-      setErrorMsg("Permission to access location was denied");
+    try {
+      let { status } = await Location.requestPermissionsAsync();
+      status !== "granted" &&
+        setErrorMsg("Permission to access location was denied");
+      let location = await Location.getCurrentPositionAsync({});
+      setLocation(location);
+    } catch (error) {
+      console.log("Notification error", error);
     }
-    let location = await Location.getCurrentPositionAsync({});
-    setLocation(location);
   }
-  /*
-  let text = "Waiting..";
-  if (errorMsg) {
-    text = errorMsg;
-  } else if (location) {
-    text = JSON.stringify(location);
-  }*/
+  const LocationData = ({ iconName, locationText, locationNumber }) => {
+    return (
+      <View style={styles.locationData}>
+        <MaterialCommunityIcons
+          style={styles.locationText}
+          name={iconName}
+          size={18}
+        />
+        <Text style={styles.locationText}>
+          {locationText} : {locationNumber.toFixed(2)}
+        </Text>
+      </View>
+    );
+  };
   return (
     <View>
       <TouchableOpacity
@@ -37,36 +44,21 @@ export default function UserLocation() {
       </TouchableOpacity>
       {location && (
         <View style={styles.locationContainer}>
-          <View style={styles.locationData}>
-            <FontAwesome5
-              style={styles.locationText}
-              name="mountain"
-              size={18}
-            />
-            <Text style={styles.locationText}>
-              Altitude : {location.coords.altitude.toFixed(2)}
-            </Text>
-          </View>
-          <View style={styles.locationData}>
-            <MaterialCommunityIcons
-              style={styles.locationText}
-              name="latitude"
-              size={18}
-            />
-            <Text style={styles.locationText}>
-              Latitude : {location.coords.latitude.toFixed(2)}
-            </Text>
-          </View>
-          <View style={styles.locationData}>
-            <MaterialCommunityIcons
-              style={styles.locationText}
-              name="longitude"
-              size={18}
-            />
-            <Text style={styles.locationText}>
-              Longitude : {location.coords.longitude.toFixed(2)}
-            </Text>
-          </View>
+          <LocationData
+            iconName="altimeter"
+            locationText="Altitude"
+            locationNumber={location.coords.altitude}
+          />
+          <LocationData
+            iconName="latitude"
+            locationText="Latitude"
+            locationNumber={location.coords.latitude}
+          />
+          <LocationData
+            iconName="longitude"
+            locationText="Longitude"
+            locationNumber={location.coords.longitude}
+          />
         </View>
       )}
     </View>
