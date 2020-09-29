@@ -25,6 +25,7 @@ export default function TextInputSearch() {
         style={styles.input}
         multiline
         placeholder="e.g React Native"
+        placeholderTextColor="#eeeeee"
         onChangeText={(value) => setSearchTerm(value)}
       />
       <TouchableOpacity style={styles.button} onPress={SearchTerm}>
@@ -44,8 +45,8 @@ const styles = StyleSheet.create({
     marginTop: 30,
   },
   buttonText: {
-    color: "#eeeeee",
     paddingRight: 5,
+    color: "#eeeeee",
   },
   input: {
     borderWidth: 1,

@@ -7,7 +7,6 @@ import {
   FlatList,
   TextInput,
 } from "react-native";
-import { AntDesign } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import moment from "moment";
 
@@ -29,6 +28,7 @@ export default function EventForm(props) {
         style={styles.input}
         multiline
         placeholder="Type some activity"
+        placeholderTextColor="#eeeeee"
         onChangeText={(value) => props.setText(value)}
       />
       <TouchableOpacity style={styles.button} onPress={props.onPress}>

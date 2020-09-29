@@ -75,6 +75,7 @@ export default function EventList(props) {
             style={styles.input}
             multiline
             placeholder="Search desired activity"
+            placeholderTextColor="#eeeeee"
             onChangeText={(text) => handleSearch(text)}
           />
           <FlatList

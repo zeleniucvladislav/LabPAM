@@ -8,8 +8,8 @@ import { MaterialIcons } from "@expo/vector-icons";
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
     shouldShowAlert: true,
-    shouldPlaySound: false,
-    shouldSetBadge: false,
+    shouldPlaySound: true,
+    shouldSetBadge: true,
   }),
 });
 
@@ -51,14 +51,14 @@ async function sendPushNotification() {
     vibrate: false,
     sound: true,
     content: {
-      title: "Pam notification 📬",
+      title: "Pam notification ",
       body: "Notification for PAM",
       data: { data: "goes here" },
     },
-    trigger: { seconds: 10 },
+    trigger: { seconds: 2 },
   });
 }
-/*
+
 async function registerForPushNotificationsAsync() {
   if (Constants.isDevice) {
     const { status: existingStatus } = await Permissions.getAsync(
@@ -85,7 +85,7 @@ async function registerForPushNotificationsAsync() {
       lightColor: "#FF231F7C",
     });
   }
-}*/
+}
 const styles = StyleSheet.create({
   button: {
     flexDirection: "row",

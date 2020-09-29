@@ -24,6 +24,7 @@ export default function UpdateEvent(props) {
         style={styles.input}
         multiline
         placeholder={`${props.item.text}`}
+        placeholderTextColor="#eeeeee"
         onChangeText={(value) => setEvent(value)}
       />
       <TouchableOpacity style={styles.button} onPress={handleUpdate}>
