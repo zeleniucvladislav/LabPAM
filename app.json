@@ -2,16 +2,19 @@
   "name": "PamExpo",
   "displayName": "PamExpo",
   "expo": {
-    "name": "PamExpo",
-    "slug": "PamExpo",
+    "name": "PamExpoLab",
+    "slug": "pamexpolab",
     "version": "1.0.0",
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "android": {
       "useNextNotificationsApi": true
     },
     "androidNavigationBar": {
       "barStyle": "light-content",
       "backgroundColor": "#393e46"
-    }
+    },
+    "description": ""
   }
 }

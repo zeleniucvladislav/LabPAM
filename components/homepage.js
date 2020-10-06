@@ -22,6 +22,12 @@ export default function Homepage({ navigation }) {
       >
         <Text style={styles.buttonText}>Laboratorul 2</Text>
       </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => navigation.navigate("Lab3")}
+      >
+        <Text style={styles.buttonText}>Laboratorul 3</Text>
+      </TouchableOpacity>
     </View>
   );
 }
