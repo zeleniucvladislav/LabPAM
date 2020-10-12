@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { View, StyleSheet, SafeAreaView, ScrollView } from "react-native";
 import AsyncStorage from "@react-native-community/async-storage";
+import CalendarNotification from "./calendarNotification";
 import EventList from "./eventList";
 import Calendar from "./calendar";
 import EventForm from "./eventForm";
@@ -97,6 +98,7 @@ export default function Lab2() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.body}>
+        <CalendarNotification eventList={eventList} />
         {calendarExpanded ? (
           <EventForm
             date={date}

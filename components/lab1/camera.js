@@ -75,18 +75,6 @@ export default function CameraLab(props) {
                     <Entypo name="camera" size={25} />
                   </Text>
                 </TouchableOpacity>
-                {/* <TouchableOpacity
-            style={styles.button}
-            onPress={() => {
-              setType(
-                type === Camera.Constants.Type.back
-                  ? Camera.Constants.Type.front
-                  : Camera.Constants.Type.back
-              );
-            }}
-          >
-            <Text style={styles.buttonText}>Flip</Text>
-          </TouchableOpacity>*/}
                 <TouchableOpacity
                   style={styles.button}
                   onPress={() => setType(Camera.Constants.Type.front)}

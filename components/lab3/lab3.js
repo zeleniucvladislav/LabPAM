@@ -59,6 +59,14 @@ export default function Lab3() {
         >
           <Text style={styles.buttonText}>Delete</Text>
         </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => {
+            StoreNews();
+          }}
+        >
+          <Text style={styles.buttonText}>Update</Text>
+        </TouchableOpacity>
         <Newsfeed news={news} />
       </View>
     </SafeAreaView>

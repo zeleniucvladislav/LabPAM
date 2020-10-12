@@ -1,9 +1,8 @@
+import React, { useState, useEffect, useRef } from "react";
 import Constants from "expo-constants";
 import * as Notifications from "expo-notifications";
 import * as Permissions from "expo-permissions";
-import React, { useState, useEffect, useRef } from "react";
-import { Text, TouchableOpacity, Platform, StyleSheet } from "react-native";
-import { MaterialIcons } from "@expo/vector-icons";
+import moment from "moment";
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -13,11 +12,11 @@ Notifications.setNotificationHandler({
   }),
 });
 
-export default function NotificationLab() {
+export default function CalendarNotification({ eventList }) {
   const [notification, setNotification] = useState(false);
   const notificationListener = useRef();
-
   useEffect(() => {
+    ShowNotification(eventList);
     notificationListener.current = Notifications.addNotificationReceivedListener(
       (notification) => {
         setNotification(notification);
@@ -26,36 +25,30 @@ export default function NotificationLab() {
     return () => {
       Notifications.removeNotificationSubscription(notificationListener);
     };
-  }, []);
+  }, [eventList]);
 
-  return (
-    <>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={async () => {
-          await sendPushNotification();
-        }}
-      >
-        <Text style={styles.buttonText}>Send Notification</Text>
-        <MaterialIcons
-          style={styles.buttonText}
-          name="notifications-active"
-          size={18}
-        />
-      </TouchableOpacity>
-    </>
-  );
+  const ShowNotification = (data) => {
+    const event = data.find(
+      (el) => el.date === `${moment().format("YYYY-MM-DD")}`.toString()
+    );
+    data.some(
+      (el) => el.date === `${moment().format("YYYY-MM-DD")}`.toString()
+    ) && sendPushNotification(event);
+  };
+  return <></>;
 }
-async function sendPushNotification() {
+async function sendPushNotification(event) {
   await Notifications.scheduleNotificationAsync({
     vibrate: false,
     sound: true,
     content: {
-      title: "Pam notification ",
-      body: "Notification for PAM",
+      title: "Calendar Notification",
+      body: `You have an outgoing event called ${event.text} at ${moment(
+        event.date
+      ).format("MMMM Do YYYY")}`,
       data: { data: "goes here" },
     },
-    trigger: { seconds: 10 },
+    trigger: { seconds: 0 },
   });
 }
 
@@ -86,17 +79,3 @@ async function registerForPushNotificationsAsync() {
     });
   }
 }
-const styles = StyleSheet.create({
-  button: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#00adb5",
-    padding: 10,
-    marginTop: 30,
-  },
-  buttonText: {
-    color: "#eeeeee",
-    paddingRight: 5,
-  },
-});

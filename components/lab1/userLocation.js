@@ -14,7 +14,7 @@ export default function UserLocation() {
       let location = await Location.getCurrentPositionAsync({});
       setLocation(location);
     } catch (error) {
-      console.log("Notification error", error);
+      console.log("Location error", error);
     }
   }
   const LocationData = ({ iconName, locationText, locationNumber }) => {
