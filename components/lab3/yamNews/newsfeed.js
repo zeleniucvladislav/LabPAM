@@ -30,7 +30,7 @@ export default function Newsfeed(props) {
 }
 const styles = StyleSheet.create({
   event: {
-    margin: 20,
+    margin: 10,
     padding: 20,
     backgroundColor: "#00adb5",
   },

@@ -96,7 +96,7 @@ export default function Lab2() {
     }
   };
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.body}>
         <CalendarNotification eventList={eventList} />
         {calendarExpanded ? (
@@ -118,7 +118,7 @@ export default function Lab2() {
           </>
         )}
       </View>
-    </SafeAreaView>
+    </View>
   );
 }
 const styles = StyleSheet.create({

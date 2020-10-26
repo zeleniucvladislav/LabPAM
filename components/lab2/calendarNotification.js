@@ -31,9 +31,11 @@ export default function CalendarNotification({ eventList }) {
     const event = data.find(
       (el) => el.date === `${moment().format("YYYY-MM-DD")}`.toString()
     );
-    data.some(
-      (el) => el.date === `${moment().format("YYYY-MM-DD")}`.toString()
-    ) && sendPushNotification(event);
+    data !== [] &&
+      data.some(
+        (el) => el.date === `${moment().format("YYYY-MM-DD")}`.toString()
+      ) &&
+      sendPushNotification(event);
   };
   return <></>;
 }

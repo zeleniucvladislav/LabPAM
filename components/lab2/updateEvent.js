@@ -5,17 +5,21 @@ import {
   StyleSheet,
   Text,
   TextInput,
+  ScrollView
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import moment from "moment";
 
 export default function UpdateEvent(props) {
   const [event, setEvent] = useState("");
+  const [disabled,setDisabled] = useState(false)
   const handleUpdate = () => {
     props.updateEvent(props.index, props.item.date, event);
     props.return();
+    setDisabled(true)
   };
   return (
+    <ScrollView>
     <View style={styles.form}>
       <Text style={styles.label}>
         Date : {moment(props.item.date).format("MMMM Do YYYY")}
@@ -27,7 +31,7 @@ export default function UpdateEvent(props) {
         placeholderTextColor="#eeeeee"
         onChangeText={(value) => setEvent(value)}
       />
-      <TouchableOpacity style={styles.button} onPress={handleUpdate}>
+      <TouchableOpacity style={styles.button} onPress={handleUpdate} disabled={disabled}>
         <Text style={styles.buttonText}>Update</Text>
         <MaterialIcons style={styles.buttonText} name="update" size={20} />
       </TouchableOpacity>
@@ -40,6 +44,7 @@ export default function UpdateEvent(props) {
         />
       </TouchableOpacity>
     </View>
+    </ScrollView>
   );
 }
 

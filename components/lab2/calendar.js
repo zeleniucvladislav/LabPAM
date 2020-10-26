@@ -10,6 +10,10 @@ export default function Calendar(props) {
       /*onVisibleMonthsChange={(months) => {
         console.log("now these months are visible", months);
       }}*/
+      // Enable horizontal scrolling, default = false
+      horizontal={true}
+      // Enable paging on horizontal, default = false
+      pagingEnabled={true}
       onDayPress={(day) => {
         props.selectDate(day);
       }}
