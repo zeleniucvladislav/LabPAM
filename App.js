@@ -16,6 +16,7 @@ import Lab0 from "./components/lab0/lab0";
 import Lab3 from "./components/lab3/lab3";
 import YamNews from "./components/lab3/yamNews/yamNews";
 import WallHavenImages from "./components/lab3/wallhaven/wallhavenImages";
+import Lab4 from "./components/lab4/lab4";
 
 const Stack = createStackNavigator();
 
@@ -48,6 +49,7 @@ export default function App() {
             <Stack.Screen name="Lab3" component={Lab3} />
             <Stack.Screen name="YamNews" component={YamNews} />
             <Stack.Screen name="Wallhaven Images" component={WallHavenImages} />
+            <Stack.Screen name="Lab4" component={Lab4} />
           </Stack.Navigator>
         </NavigationContainer>
       </SafeAreaView>
